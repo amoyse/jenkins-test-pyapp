@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/amoyse/your-repository-name.git'
+                git branch: 'main', url: 'https://github.com/amoyse/jenkins-test-pyapp.git'
             }
         }
  
@@ -37,7 +37,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh 'docker build -t username/docker-image-name .'
+                    sh 'docker build -t amoyse42/jenkins-test-pyapp .'
                 }
             }
         }
@@ -45,9 +45,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dhpass', usernameVariable: 'dhuser')]) {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Rack-Carbon-Verdict1', usernameVariable: 'amoyse42')]) {
                         sh 'docker login -u ${dhuser} -p ${dhpass}'
-                        sh 'docker push rupokify/python-jenkins-testone'
+                        sh 'docker push amoyse42/jenkins-test-pyapp'
                     }
                 }
             }
@@ -56,7 +56,7 @@ pipeline {
         stage('DAST') {
             steps {
                 script {
-                    sh 'trivy image username/docker-image-name:latest'
+                    sh 'trivy image amoyse42/jenkins-test-pyapp'
                 }
             }
         }
