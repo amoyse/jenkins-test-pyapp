@@ -27,7 +27,7 @@ pipeline {
  
         stage('SAST') {
             steps {
-                sh 'safety check'
+                sh 'python3 -m safety check'
             }
         }
  
