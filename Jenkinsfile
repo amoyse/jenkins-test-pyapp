@@ -40,7 +40,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Rack-Carbon-Verdict1', usernameVariable: 'amoyse42')]) {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dhpass', usernameVariable: 'dhuser')]) {
                         sh 'docker login -u ${dhuser} -p ${dhpass}'
                         sh 'docker push amoyse42/jenkins-test-pyapp'
                     }
