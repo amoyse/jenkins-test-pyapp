@@ -1,6 +1,10 @@
 pipeline {
  
     agent any
+
+    environment {
+        PATH = "/usr/bin/python3;$PATH"
+    }
  
     stages {
         stage('Checkout') {
