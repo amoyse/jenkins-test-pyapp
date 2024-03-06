@@ -28,12 +28,6 @@ pipeline {
             }
         }
  
-        stage('SCA') {
-            steps {
-                dependencyCheck additionalArguments: '', odcInstallation: 'OWASP-Dependency-Scan'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
  
         stage('Build') {
             steps {
